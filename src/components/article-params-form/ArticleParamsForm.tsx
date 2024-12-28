@@ -7,6 +7,7 @@ import { Button } from 'src/ui/button';
 import { Text } from 'src/ui/text';
 import { Select } from 'src/ui/select';
 import { RadioGroup } from 'src/ui/radio-group';
+import { Separator } from 'src/ui/separator';
 import {
 	fontFamilyOptions,
 	fontSizeOptions,
@@ -20,7 +21,6 @@ import {
 } from 'src/constants/articleProps';
 
 import styles from './ArticleParamsForm.module.scss';
-import { Separator } from 'src/ui/separator';
 
 type ArticleParamsFormProps = {
 	articleState: ArticleStateType;
@@ -55,12 +55,22 @@ export const ArticleParamsForm = ({
 		});
 	};
 
+	const handleIsOpenSidebar = (isOpen: boolean) => {
+		setIsOpen(isOpen);
+	};
+
 	return (
 		<>
 			{isOpen && (
-				<div className={styles.backdrop} onClick={() => setIsOpen(false)} />
+				<div
+					className={styles.backdrop}
+					onClick={() => handleIsOpenSidebar(false)}
+				/>
 			)}
-			<ArrowButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
+			<ArrowButton
+				isOpen={isOpen}
+				onClick={() => handleIsOpenSidebar(!isOpen)}
+			/>
 			<aside
 				className={clsx(styles.container, isOpen && styles.container_open)}>
 				<form className={styles.form} onSubmit={onSubmit} onReset={onReset}>
